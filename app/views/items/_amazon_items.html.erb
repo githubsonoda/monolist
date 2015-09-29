@@ -4,14 +4,22 @@
       <div class="item-box">
         <div class="image">
           <div class="img-wrap">
-            <% #TODO 商品画像 %>
-            <%= image_tag("no-image.png" , alt: item.get('ItemAttributes/Title')) %>
+
+            <% #商品画像を表示(商品画像が無い場合は"no-image.png"を表示する) %>
+            <% if item.get('LargeImage/URL')!=nil then %>
+              <%= image_tag(item.get('LargeImage/URL') , alt: item.get('ItemAttributes/Title')) %>
+            <% else %>
+              <%= image_tag("no-image.png" , alt: item.get('ItemAttributes/Title')) %>
+            <% end %>
+
           </div>
         </div>
         <div class="detail">
           <p class="title">
-            <% #TODO 商品タイトル %>
-            仮タイトル
+            
+            <% #商品タイトルを表示 %>
+            <%= item.get('ItemAttributes/Title') %>
+
           </p>
         </div>
         <div class="action clearfix">
