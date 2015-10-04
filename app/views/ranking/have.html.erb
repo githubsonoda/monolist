@@ -1,0 +1,25 @@
+<center>
+<h1>持っているものランキングTop10</h1>
+</center>
+
+<div class="container">
+  <div class="container-inner inner-default clearfix">
+  <ol>
+    <% @have_top10_items.each do |item| %>
+      <li>
+        <div class="image">
+          <div class="img-wrap">
+            <% if item.small_image.present? %>
+              <%= image_tag(item.small_image , alt: item.title) %>
+              <span class="detail"><%= item.title %></span> [<%= item.have_users.count %>]
+            <% else %>
+              <%= image_tag("no-image.png" , alt: item.title) %> [<%= item.have_users.count %>]
+            <% end %>
+          </div>
+        </div>
+        <%= render 'items/action' , item: item if logged_in? %>
+      </li><br>
+    <% end %>
+  </ol>
+  </div>
+</div>
