@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   end
   
   def show
-    @items = @user.items.group(:item_id)
+    @items = @user.items.group('items.id') #PostgreSQL(Heroku)では左記で記載
+    # @items = @user.items.group(:item_id) #SQLiteでは左記でOK
   end
 
   private
